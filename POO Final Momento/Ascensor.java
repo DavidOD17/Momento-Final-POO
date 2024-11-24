@@ -19,26 +19,26 @@ public class Ascensor {
         this.botones = new ArrayList<>();  // Se crea la lista de botones para cada piso
         this.pesoActual = 0.0;  // Inicializamos el peso actual como 0
 
-        // Inicializar botones para los pisos (1-5)
+        // Inicializamos los botones para los pisos (1-5)
         for (int i = 1; i <= pisos; i++) {
             botones.add(new BotonDelAscensor(i));
         }
     }
 
-    // Manejar solicitud desde un piso
+    // Manejar la solicitud desde un piso
     public void manejarSolicitud(int piso, String direccion) {
 
-        // Validar si el piso solicitado está dentro del rango permitido
+        // Valida si el piso solicitado está dentro del rango permitido
         if (piso < 1 || piso > 5) {
-            System.out.println(" El piso " + piso + " no existe."); // Mensaje de error si el piso no es válido
+            System.out.println(" El piso " + piso + " no existe."); // Mensaje de error si el piso no es valido
             return;
         }
 
-        // Indicar que se recibió una solicitud desde un piso específico
+        // Indica que se recibio una solicitud desde un piso especifico
         System.out.println("Solicitud desde el piso " + piso + " para " + direccion + ".");
         moverAscensor(piso); // Mover el ascensor al piso solicitado
 
-        // Una vez en el piso, preguntar al usuario a qué piso desea ir
+        // Una vez en el piso preguntar al usuario a que piso desea ir
         Scanner scanner = new Scanner(System.in);
         System.out.print("\n El ascensor ha llegado.. ");
                 System.out.println("\nMarque el piso al que desea ir (1-5) ");
@@ -49,7 +49,7 @@ public class Ascensor {
     // Metodo para mover el ascensor a un piso de destino que se haya indicado
     public void moverAscensor(int pisoDestino) {
 
-        // Verificar si el ascensor ya está en el piso solicitado
+        // Verificar si el ascensor ya esta en el piso solicitado
         if (ubicacionActual == pisoDestino) {
             System.out.println("El ascensor ya está en el piso " + pisoDestino);
             return;
@@ -59,19 +59,19 @@ public class Ascensor {
         while (ubicacionActual != pisoDestino) {
             if (ubicacionActual < pisoDestino) {
                 direccion = "subiendo"; // Si el ascensor esta en un piso inferior sube el ascensor
-                ubicacionActual++; 
+                ubicacionActual++; // incrementa el piso actual
             } else {
                 direccion = "bajando"; // Si el ascensor esta en un piso superior baja el ascensor
-                ubicacionActual--; // Decrementar el piso actual
+                ubicacionActual--; // disminuye el piso actual
             }
-            System.out.println("Ascensor en piso " + ubicacionActual);   // Imprime la ubicación actual del ascensor
+            System.out.println("Ascensor en piso " + ubicacionActual);   // Imprime la ubicacion actual del ascensor
         }
 
         // Indicar que el ascensor ha llegado al piso destino
         System.out.println("\nAscensor ha llegado al piso " + pisoDestino);
         puerta.abrir(); // Se abre la puerta al llegar al destino
 
-        // Intentar cerrar la puerta (manejo de obstáculos está en Puerta)
+        // Intentar cerrar la puerta (manejo de obstaculos esta en Puerta)
         puerta.cerrar();
     }
 
